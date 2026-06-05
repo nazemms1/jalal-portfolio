@@ -1,0 +1,89 @@
+.section {
+  padding: 5rem 1.5rem;
+  background: rgba(8, 15, 26, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive-mid);
+  margin-bottom: 0.5rem;
+}
+
+.heading {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 3rem;
+  letter-spacing: -0.5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: rgba(10, 22, 38, 0.82);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 32px rgba(107, 124, 46, 0.22);
+  transform: translateY(-4px);
+  border-color: rgba(107, 124, 46, 0.45);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.emoji { font-size: 1.5rem; }
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  background: rgba(8, 15, 26, 0.8);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.card:hover .badge {
+  background: rgba(107, 124, 46, 0.14);
+  color: var(--olive-mid);
+  border-color: rgba(107, 124, 46, 0.38);
+}

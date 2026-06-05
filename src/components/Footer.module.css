@@ -1,0 +1,14 @@
+.footer {
+  background: rgba(3, 8, 16, 0.92);
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.text {
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  margin: 0;
+}

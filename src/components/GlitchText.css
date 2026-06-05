@@ -1,0 +1,74 @@
+.glitch-title {
+  position: relative;
+  display: inline-block;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* pseudo-elements for the glitch layers */
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ── idle glitch: subtle flicker at rest ─────────────────── */
+.glitch-title::before {
+  color: #a3b84a;          /* olive */
+  animation: glitch-idle-a 6s infinite;
+}
+
+.glitch-title::after {
+  color: #4a8fb8;          /* complementary blue */
+  animation: glitch-idle-b 6s infinite;
+}
+
+/* ── switching glitch: hard scramble on word change ─────── */
+.glitch-switching::before {
+  opacity: 1;
+  animation: glitch-switch-a 0.6s steps(1) forwards;
+}
+
+.glitch-switching::after {
+  opacity: 1;
+  animation: glitch-switch-b 0.6s steps(1) forwards;
+}
+
+/* idle — very subtle, fires every 6 s */
+@keyframes glitch-idle-a {
+  0%, 90%, 100% { opacity: 0; transform: none; }
+  91%            { opacity: 0.6; transform: translate(-2px, 1px) skewX(-2deg); clip-path: inset(20% 0 60% 0); }
+  93%            { opacity: 0;   transform: none; }
+  94%            { opacity: 0.4; transform: translate(2px, -1px) skewX(3deg); clip-path: inset(55% 0 10% 0); }
+  96%            { opacity: 0;   transform: none; }
+}
+
+@keyframes glitch-idle-b {
+  0%, 92%, 100% { opacity: 0; transform: none; }
+  93%            { opacity: 0.5; transform: translate(3px, -1px) skewX(2deg); clip-path: inset(60% 0 15% 0); }
+  95%            { opacity: 0;   transform: none; }
+}
+
+/* switching — hard scramble during the 600 ms transition */
+@keyframes glitch-switch-a {
+  0%   { opacity: 0.8; transform: translate(-4px, 2px)  skewX(-6deg); clip-path: inset(10% 0 55% 0); }
+  20%  { opacity: 0.6; transform: translate(4px, -2px)  skewX(4deg);  clip-path: inset(60% 0 5% 0); }
+  40%  { opacity: 0.9; transform: translate(-2px, 0px)  skewX(-2deg); clip-path: inset(30% 0 30% 0); }
+  60%  { opacity: 0.5; transform: translate(6px, 1px)   skewX(8deg);  clip-path: inset(5% 0 70% 0); }
+  80%  { opacity: 0.3; transform: translate(-1px, -3px) skewX(-4deg); clip-path: inset(80% 0 0% 0); }
+  100% { opacity: 0;   transform: none; }
+}
+
+@keyframes glitch-switch-b {
+  0%   { opacity: 0.7; transform: translate(5px, -2px)  skewX(5deg);  clip-path: inset(50% 0 10% 0); }
+  25%  { opacity: 0.9; transform: translate(-5px, 3px)  skewX(-7deg); clip-path: inset(15% 0 50% 0); }
+  50%  { opacity: 0.4; transform: translate(2px, -1px)  skewX(3deg);  clip-path: inset(70% 0 5% 0); }
+  75%  { opacity: 0.6; transform: translate(-3px, 2px)  skewX(-3deg); clip-path: inset(0% 0 80% 0); }
+  100% { opacity: 0;   transform: none; }
+}

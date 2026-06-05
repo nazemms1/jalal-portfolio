@@ -1,0 +1,152 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 1.5rem 3rem;
+  background: transparent;
+}
+
+.container {
+  max-width: 700px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.9s ease both;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(107, 124, 46, 0.18);
+  color: var(--olive-mid);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(107, 124, 46, 0.45);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin: 0 0 0.5rem;
+}
+
+.name span {
+  background: linear-gradient(135deg, var(--olive-mid), #c8d86a, var(--olive-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* font-size/color handled inside GlitchText.css */
+.title {
+  margin: 0 0 1.5rem;
+  font-size: 0; /* collapses h2 itself; the span inside sets its own size */
+}
+
+.intro {
+  font-size: 1.05rem;
+  color: var(--text-subtle);
+  line-height: 1.75;
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+}
+
+.intro strong {
+  color: var(--olive-mid);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--olive-dark), var(--olive), var(--olive-light));
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(107, 124, 46, 0.4);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.btnPrimary:hover {
+  opacity: 0.88;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(107, 124, 46, 0.5);
+}
+
+.btnOutline {
+  background: rgba(5, 11, 18, 0.55);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-strong);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s, background 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.btnOutline:hover {
+  border-color: var(--olive);
+  color: var(--olive-mid);
+  background: rgba(107, 124, 46, 0.12);
+  transform: translateY(-3px);
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
+  text-decoration: none;
+  background: rgba(5, 11, 18, 0.55);
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.socialLink:hover {
+  border-color: var(--olive);
+  color: var(--olive-mid);
+  background: rgba(107, 124, 46, 0.15);
+  transform: translateY(-3px);
+}
+
+/* aurora behind content */
+.gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 65% 20%, rgba(107, 124, 46, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 25% 80%, rgba(13, 27, 60, 0.4) 0%, transparent 50%);
+  pointer-events: none;
+}
