@@ -8,6 +8,8 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
+  /* needed so the mobile menu's position:absolute is relative to header */
+  overflow: visible;
 }
 
 .nav {
@@ -68,6 +70,8 @@
   cursor: pointer;
   padding: 6px;
   border-radius: 8px;
+  z-index: 101;
+  position: relative;
 }
 
 .bar {
@@ -86,12 +90,13 @@
 @media (max-width: 700px) {
   .hamburger { display: flex; }
 
+  /* القائمة متصلة بالـ header — تنزل من أسفله مباشرة */
   .links {
-    position: fixed;
-    top: 68px;
+    position: absolute;
+    top: 100%; /* أسفل الـ header مباشرة */
     left: 0;
     right: 0;
-    z-index: 99;
+    z-index: 100;
     background: rgba(5, 11, 18, 0.98);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -100,10 +105,16 @@
     gap: 0.25rem;
     border-bottom: 1px solid var(--border);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-    transform: translateY(-110%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* مخفية فوق الـ header */
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
   }
 
-  .links.open { transform: translateY(0); }
+  .links.open {
+    clip-path: inset(0 0 -20px 0); /* تظهر بالكامل */
+    pointer-events: auto;
+  }
+
   .link { padding: 0.65rem 0.75rem; }
 }
