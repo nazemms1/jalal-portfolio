@@ -1,49 +1,70 @@
+"use client";
+
+import React from "react";
+import GlassCard from "@/components/GlassCard";
+import { usePortfolioData } from "@/context/PortfolioContext";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./About.module.css";
 
 export default function About() {
+  const { data } = usePortfolioData();
+  const { t } = useLanguage();
+  const { about } = data;
+
   return (
-    <section className={styles.section} id="about">
-      <div className={styles.container}>
-        <div className={styles.label}>About Me</div>
-        <h2 className={styles.heading}>Who I Am</h2>
+    <section id="about" style={{ position: "relative" }}>
+      <div className="section-container">
+        <div className={styles.header}>
+          <h2 className={styles.title}>
+            <span className="gradient-text">{t("about.title")}</span>
+          </h2>
+          <p className={styles.subtitle}>{t("about.subtitle")}</p>
+        </div>
 
-        <div className={styles.content}>
-          <div className={styles.avatar} aria-hidden="true">
-            <span>J</span>
-          </div>
-
-          <div className={styles.text}>
-            <p>
-              I&apos;m <strong>Jalal Al-Nabelsi</strong>, an AI Engineer and
-              Front-End Developer passionate about building intelligent
-              applications and modern user interfaces that solve real problems.
-            </p>
-            <p>
-              I hold a Bachelor&apos;s degree in Information and Communication
-              Engineering from Arab International University, where I developed
-              a strong foundation in software development and AI systems.
-            </p>
-            <p>
-              My interests lie at the intersection of{" "}
-              <strong>machine learning</strong> and{" "}
-              <strong>interactive web applications</strong> — creating
-              experiences that are both smart and delightful to use.
-            </p>
-
-            <div className={styles.highlights}>
-              <div className={styles.highlight}>
-                <span className={styles.icon}>🤖</span>
-                <span>AI &amp; Machine Learning</span>
-              </div>
-              <div className={styles.highlight}>
-                <span className={styles.icon}>💻</span>
-                <span>Front-End Development</span>
-              </div>
-              <div className={styles.highlight}>
-                <span className={styles.icon}>📊</span>
-                <span>Data Analysis</span>
-              </div>
+        <div className={styles.bentoGrid}>
+          {/* Main Story Card */}
+          <GlassCard className={styles.mainCard}>
+            <div>
+              <span className="glass-pill" style={{ marginBottom: "1rem" }}>
+                <span>💡</span> <span>Core Philosophy</span>
+              </span>
+              <p className={styles.paragraph}>{about.p1}</p>
+              <p className={styles.paragraph}>{about.p2}</p>
             </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginTop: "1rem" }}>
+              <span className="glass-pill">RAG & Vector Search</span>
+              <span className="glass-pill">React & Next.js Architecture</span>
+              <span className="glass-pill">LLM Prompting & Fine-Tuning</span>
+              <span className="glass-pill">Clean Code & System Design</span>
+            </div>
+          </GlassCard>
+
+          {/* Focus Pillars Stack */}
+          <div className={styles.focusStack}>
+            <GlassCard className={styles.focusCard}>
+              <div className={styles.focusIcon}>🤖</div>
+              <div>
+                <h3 className={styles.focusHeading}>{t("about.focus.ai.title")}</h3>
+                <p className={styles.focusText}>{t("about.focus.ai.desc")}</p>
+              </div>
+            </GlassCard>
+
+            <GlassCard className={styles.focusCard}>
+              <div className={styles.focusIcon}>⚡</div>
+              <div>
+                <h3 className={styles.focusHeading}>{t("about.focus.web.title")}</h3>
+                <p className={styles.focusText}>{t("about.focus.web.desc")}</p>
+              </div>
+            </GlassCard>
+
+            <GlassCard className={styles.focusCard}>
+              <div className={styles.focusIcon}>🏛️</div>
+              <div>
+                <h3 className={styles.focusHeading}>{t("about.focus.arch.title")}</h3>
+                <p className={styles.focusText}>{t("about.focus.arch.desc")}</p>
+              </div>
+            </GlassCard>
           </div>
         </div>
       </div>

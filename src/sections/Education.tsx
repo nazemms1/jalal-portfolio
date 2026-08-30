@@ -1,57 +1,65 @@
+"use client";
+
+import React from "react";
+import GlassCard from "@/components/GlassCard";
 import { courses } from "@/data";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./Education.module.css";
 
 export default function Education() {
+  const { t } = useLanguage();
+
   return (
-    <section className={styles.section} id="education">
-      <div className={styles.container}>
-        <div className={styles.label}>Education &amp; Courses</div>
-        <h2 className={styles.heading}>Academic Background</h2>
+    <section id="education">
+      <div className="section-container">
+        <div className={styles.header}>
+          <h2 className={styles.title}>
+            <span className="gradient-text">{t("education.title")}</span>
+          </h2>
+          <p className={styles.subtitle}>{t("education.subtitle")}</p>
+        </div>
 
         <div className={styles.grid}>
-          <div className={styles.card}>
-            <div className={styles.iconRow}>
-              <span className={styles.icon}>🎓</span>
-              <span className={styles.period}>2018 – 2024</span>
+          {/* Degree Card */}
+          <GlassCard className={styles.degreeCard}>
+            <div className={styles.degreeHeader}>
+              <div className={styles.degreeIcon}>🎓</div>
+              <div>
+                <span className="glass-pill" style={{ marginBottom: "0.25rem" }}>
+                  Computer Engineering
+                </span>
+                <h3 className={styles.degreeTitle}>{t("education.degree.title")}</h3>
+              </div>
             </div>
-            <h3 className={styles.degree}>
-              B.Sc. in Information &amp; Communication Engineering
+
+            <p className={styles.degreeDesc}>{t("education.degree.desc")}</p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              <span className="glass-pill">Artificial Intelligence</span>
+              <span className="glass-pill">Data Structures</span>
+              <span className="glass-pill">Machine Learning</span>
+              <span className="glass-pill">Software Engineering</span>
+            </div>
+          </GlassCard>
+
+          {/* Courses & Specializations */}
+          <GlassCard>
+            <h3 style={{ fontSize: "1.15rem", fontWeight: 700, marginBottom: "1.25rem", color: "var(--text-main)" }}>
+              {t("education.courses")}
             </h3>
-            <p className={styles.institution}>Arab International University</p>
-            <p className={styles.note}>Damascus, Syria</p>
-          </div>
 
-          <div className={styles.card}>
-            <div className={styles.iconRow}>
-              <span className={styles.icon}>📚</span>
-              <span className={styles.cardTitle}>Courses</span>
-            </div>
-            <ul className={styles.courseList}>
-              {courses.map((course) => (
-                <li key={course.name} className={styles.courseItem}>
-                  <span className={styles.courseName}>{course.name}</span>
-                  <span className={styles.provider}>{course.provider}</span>
-                </li>
+            <div className={styles.coursesList}>
+              {courses.map((course, idx) => (
+                <div key={idx} className={styles.courseItem}>
+                  <span className={styles.courseIcon}>📜</span>
+                  <div>
+                    <div className={styles.courseName}>{course.name}</div>
+                    <div className={styles.courseProvider}>{course.provider}</div>
+                  </div>
+                </div>
               ))}
-            </ul>
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.iconRow}>
-              <span className={styles.icon}>🌍</span>
-              <span className={styles.cardTitle}>Languages</span>
             </div>
-            <div className={styles.languages}>
-              <div className={styles.lang}>
-                <span className={styles.langName}>Arabic</span>
-                <span className={styles.langLevel}>Native</span>
-              </div>
-              <div className={styles.lang}>
-                <span className={styles.langName}>English</span>
-                <span className={styles.langLevel}>Professional</span>
-              </div>
-            </div>
-          </div>
+          </GlassCard>
         </div>
       </div>
     </section>

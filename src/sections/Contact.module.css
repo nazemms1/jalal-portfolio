@@ -1,85 +1,113 @@
-.section {
-  padding: 5rem 1.5rem 6rem;
-  background: rgba(5, 11, 18, 0.78);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.container {
-  max-width: 700px;
-  margin: 0 auto;
+.header {
   text-align: center;
+  margin-bottom: 3.5rem;
 }
 
-.label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--olive-mid);
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
   margin-bottom: 0.5rem;
 }
 
-.heading {
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
-  font-weight: 800;
-  color: var(--text);
-  margin: 0 0 1rem;
-  letter-spacing: -0.5px;
-}
-
-.sub {
-  font-size: 1rem;
+.subtitle {
   color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0 0 3rem;
+  font-size: 1.05rem;
+  max-width: 550px;
+  margin: 0 auto;
 }
 
-.cards {
+.contactCard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+.emailBox {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem auto;
+  max-width: 520px;
   flex-wrap: wrap;
-  gap: 1.25rem;
-  justify-content: center;
 }
 
-.card {
+.emailText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  font-family: var(--font-mono, monospace);
+}
+
+.copyBtn {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #a7f3d0;
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(10, 22, 38, 0.82);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1.75rem 2rem;
-  min-width: 180px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  transition: all 0.25s ease;
 }
 
-.card:hover {
-  box-shadow: 0 8px 32px rgba(107, 124, 46, 0.24);
-  transform: translateY(-3px);
-  border-color: rgba(107, 124, 46, 0.45);
+.copyBtn:hover {
+  background: rgba(16, 185, 129, 0.3);
+  border-color: rgba(16, 185, 129, 0.6);
+  transform: translateY(-1px);
 }
 
-.icon { font-size: 1.75rem; margin-bottom: 0.25rem; }
-
-.cardLabel {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-subtle);
+.toast {
+  color: #a7f3d0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.25s ease-out;
 }
 
-.value {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text);
+.socialGrid {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.socialBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.85rem;
   text-decoration: none;
-  word-break: break-all;
-  transition: color 0.2s;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
 }
 
-a.value:hover { color: var(--olive-mid); }
+.socialBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .contactCard {
+    padding: 2rem 1.25rem;
+  }
+  .emailBox {
+    justify-content: center;
+  }
+}

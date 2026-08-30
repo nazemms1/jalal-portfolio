@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* ── Reset & Master Theme ────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -8,77 +9,248 @@
   padding: 0;
 }
 
+:root {
+  /* Obsidian Base Depth */
+  --bg-deep: #030712;
+  --bg-surface: #0b0f19;
+
+  /* Accent Colors */
+  --accent-emerald: #10b981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.3);
+  --accent-cyan: #06b6d4;
+  --accent-amber: #f59e0b;
+  --accent-violet: #6366f1;
+
+  /* Text Typography Palette */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+
+  /* Premium Glassmorphism Specs (Apple / Vercel Grade) */
+  --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(10, 16, 30, 0.72);
+  --glass-bg-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%), rgba(15, 23, 42, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-hover: rgba(255, 255, 255, 0.28);
+  --glass-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  --glass-glow: rgba(16, 185, 129, 0.2);
+  --glass-blur: blur(24px);
+}
+
 html {
   scroll-behavior: smooth;
-}
-
-/* ── Palette ──────────────────────────────────────────────── */
-:root {
-  --navy:         #0d1b2a;
-  --navy-light:   #1a2e45;
-  --navy-mid:     #243b55;
-  --navy-dark:    #080f1a;
-  --navy-deeper:  #050b12;
-
-  --olive:        #6b7c2e;
-  --olive-light:  #8a9e3a;
-  --olive-mid:    #a3b84a;
-  --olive-dark:   #4f5c20;
-  --olive-glow:   rgba(107, 124, 46, 0.35);
-
-  --text:         #e8edf5;
-  --text-muted:   #9bacc4;
-  --text-subtle:  #6b809e;
-
-  --bg:           #050b12;
-  --bg-card:      rgba(10, 20, 36, 0.82);
-
-  --border:       #1a2e45;
-  --border-strong:#243b55;
-}
-
-/* ── Base ─────────────────────────────────────────────────── */
-html, body {
-  background: #050b12;
-  color: var(--text);
-  min-height: 100vh;
+  color-scheme: dark;
 }
 
 body {
-  font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Global Selection & Scrollbar ────────────────────────────────── */
 ::selection {
-  background: rgba(107, 124, 46, 0.5);
-  color: #d4e87a;
+  background: rgba(16, 185, 129, 0.3);
+  color: #a7f3d0;
 }
 
-strong {
-  color: var(--olive-mid);
-  font-weight: 600;
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* ── Scroll-reveal ────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  border: 2px solid var(--bg-deep);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
-/* ── Floating-up keyframe for Hero ───────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-emerald);
 }
+
+/* ── Typography & Accents ────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-jakarta), sans-serif;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #a7f3d0 0%, #10b981 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Frosted Glass Primitive Utilities ───────────────────────────── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 1.5rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel-interactive {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 1.5rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top Inner Specular Highlight Line */
+.glass-panel-interactive::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  opacity: 0.8;
+  transition: opacity 0.35s ease;
+}
+
+/* Light Sheen Sweep Effect on Hover */
+.glass-panel-interactive::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+}
+
+.glass-panel-interactive:hover::after {
+  left: 200%;
+}
+
+.glass-panel-interactive:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 30px 0 var(--glass-glow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 0.38rem 1rem;
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-pill:hover {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #a7f3d0;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+}
+
+/* ── Pulse Indicator ─────────────────────────────────────────────── */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald);
+  position: relative;
+  display: inline-block;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald);
+  opacity: 0.6;
+  animation: pulseGlow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+/* ── Container Layout ────────────────────────────────────────────── */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5.5rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding: 3.75rem 1rem;
+  }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Global Select & Option Dropdown Dark Mode Styling */
+select {
+  background-color: rgba(15, 23, 42, 0.95);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+select option {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  padding: 0.65rem 1rem;
+}
+
+select option:hover,
+select option:focus,
+select option:active,
+select option:checked {
+  background-color: #1e293b !important;
+  color: var(--accent-emerald) !important;
+}
+
+

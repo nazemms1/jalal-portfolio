@@ -1,44 +1,68 @@
-import { skills } from "@/data";
+"use client";
+
+import React, { useState } from "react";
+import GlassCard from "@/components/GlassCard";
+import { usePortfolioData } from "@/context/PortfolioContext";
+import { useLanguage } from "@/context/LanguageContext";
 import styles from "./Skills.module.css";
 
-const categoryLabel: Record<string, string> = {
-  frontend: "Front-End",
-  tools: "Tools & Testing",
-  ai: "AI & Data",
-};
-
-const categoryEmoji: Record<string, string> = {
-  frontend: "🎨",
-  tools: "🛠️",
-  ai: "🧠",
-};
-
-const categories = ["frontend", "tools", "ai"] as const;
-
 export default function Skills() {
-  return (
-    <section className={styles.section} id="skills">
-      <div className={styles.container}>
-        <div className={styles.label}>Skills</div>
-        <h2 className={styles.heading}>What I Work With</h2>
+  const { data } = usePortfolioData();
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<string>("all");
 
-        <div className={styles.grid}>
-          {categories.map((cat) => (
-            <div key={cat} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <span className={styles.emoji}>{categoryEmoji[cat]}</span>
-                <h3 className={styles.cardTitle}>{categoryLabel[cat]}</h3>
+  const visibleSkills = (data.skills || []).filter((s) => s.hidden !== true);
+
+  const filteredSkills = activeCategory === "all"
+    ? visibleSkills
+    : visibleSkills.filter((s) => s.category === activeCategory);
+
+  return (
+    <section id="skills">
+      <div className="section-container">
+        <div className={styles.header}>
+          <h2 className={styles.title}>
+            <span className="gradient-text">{t("skills.title")}</span>
+          </h2>
+          <p className={styles.subtitle}>{t("skills.subtitle")}</p>
+        </div>
+
+        {/* Category Filters */}
+        <div className={styles.filterTabs}>
+          {[
+            { id: "all", label: t("skills.filter.all") },
+            { id: "ai", label: t("skills.filter.ai") },
+            { id: "frontend", label: t("skills.filter.frontend") },
+            { id: "tools", label: t("skills.filter.tools") },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveCategory(tab.id)}
+              className={`${styles.tabBtn} ${
+                activeCategory === tab.id ? styles.tabBtnActive : ""
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Skills Grid */}
+        <div className={styles.skillsGrid}>
+          {filteredSkills.map((skill, index) => (
+            <GlassCard key={index} className={styles.skillCard}>
+              <div className={styles.skillTop}>
+                <span className={styles.skillName}>{skill.name}</span>
+                <span className={styles.skillLevelText}>{skill.level || 85}%</span>
               </div>
-              <div className={styles.badges}>
-                {skills
-                  .filter((s) => s.category === cat)
-                  .map((skill) => (
-                    <span key={skill.name} className={styles.badge}>
-                      {skill.name}
-                    </span>
-                  ))}
+
+              <div className={styles.progressBarBg}>
+                <div
+                  className={styles.progressBarFill}
+                  style={{ width: `${skill.level || 85}%` }}
+                />
               </div>
-            </div>
+            </GlassCard>
           ))}
         </div>
       </div>
