@@ -178,29 +178,7 @@ export default function AdminLogin({ onSuccess, onClose }: AdminLoginProps) {
           </button>
         </form>
 
-        <div style={{ marginTop: "1.75rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(255, 255, 255, 0.1)", textAlign: "center" }}>
-          <p style={{ fontSize: "0.825rem", color: "var(--text-subtle)", marginBottom: "0.85rem" }}>
-            Need direct access without Firebase login?
-          </p>
-          <button
-            type="button"
-            onClick={onSuccess}
-            style={{
-              width: "100%",
-              padding: "0.75rem",
-              borderRadius: "0.85rem",
-              background: "rgba(255, 255, 255, 0.06)",
-              border: "1px solid rgba(255, 255, 255, 0.14)",
-              color: "var(--text-main)",
-              fontWeight: 700,
-              fontSize: "0.875rem",
-              cursor: "pointer",
-              transition: "all 0.2s ease",
-            }}
-          >
-            🔓 Open CMS Studio Directly
-          </button>
-        </div>
+
       </div>
     </div>
   );
